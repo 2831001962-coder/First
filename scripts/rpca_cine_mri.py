@@ -42,6 +42,8 @@ def rpca_ialm(
 ) -> Tuple[np.ndarray, np.ndarray, int, float]:
     """Robust PCA via inexact augmented Lagrange multiplier (IALM)."""
     m, n = d.shape
+    if not np.all(np.isfinite(d)):
+        raise ValueError("Input matrix contains non-finite values (NaN or inf).")
     if lam is None:
         lam = 1.0 / np.sqrt(max(m, n))
 
@@ -51,6 +53,8 @@ def rpca_ialm(
     norm_two = np.linalg.norm(d, 2)
     norm_inf = np.linalg.norm(d.ravel(), ord=np.inf) / lam
     dual_norm = max(norm_two, norm_inf)
+    if dual_norm <= 1e-12:
+        return l, s, 0, 0.0
     y = d / dual_norm
 
     mu = 1.25 / (norm_two + 1e-12)
