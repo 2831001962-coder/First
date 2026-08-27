@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ReminderBanner } from '../components/ReminderBanner'
+import { SampleBadge } from '../components/SampleBadge'
 import { CATEGORIES, QUESTIONS, type CategoryId } from '../data/questions'
 import { daysUntil, useProgress } from '../lib/progress'
 import { formatReminderTimeLabel, hasStudiedToday, useReminder } from '../lib/reminder'
@@ -24,6 +25,7 @@ export function HomePage() {
 
   return (
     <div className="page">
+      <SampleBadge />
       <ReminderBanner />
 
       <header className="hero-home">
