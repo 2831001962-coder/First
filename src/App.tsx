@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AppShell } from './components/AppShell'
+import { ReminderScheduler } from './components/ReminderScheduler'
 import { HomePage } from './pages/HomePage'
 import { MePage } from './pages/MePage'
 import { MockPage } from './pages/MockPage'
@@ -12,6 +13,7 @@ import { WrongBookPage } from './pages/WrongBookPage'
 export default function App() {
   return (
     <BrowserRouter>
+      <ReminderScheduler />
       <Routes>
         <Route element={<AppShell />}>
           <Route index element={<HomePage />} />

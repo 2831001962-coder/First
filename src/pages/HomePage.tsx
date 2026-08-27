@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom'
+import { ReminderBanner } from '../components/ReminderBanner'
 import { CATEGORIES, QUESTIONS, type CategoryId } from '../data/questions'
 import { daysUntil, useProgress } from '../lib/progress'
+import { formatReminderTimeLabel, hasStudiedToday, useReminder } from '../lib/reminder'
 
 export function HomePage() {
   const progress = useProgress()
+  const reminder = useReminder()
   const days = daysUntil(progress.examDate)
   const answeredCount = Object.keys(progress.answered).length
   const correctCount = Object.values(progress.answered).filter((a) => a.correct).length
   const accuracy = answeredCount ? Math.round((correctCount / answeredCount) * 100) : 0
+  const studiedToday = hasStudiedToday(progress.lastStudyDate)
 
   const weak = (Object.keys(CATEGORIES) as CategoryId[])
     .map((id) => {
@@ -20,6 +24,8 @@ export function HomePage() {
 
   return (
     <div className="page">
+      <ReminderBanner />
+
       <header className="hero-home">
         <p className="brand">岸途</p>
         <p className="tagline">行测日拱一卒，申论落笔成章。向岸而行，稳稳上岸。</p>
@@ -48,6 +54,18 @@ export function HomePage() {
           <span className="value">{answeredCount ? `${accuracy}%` : '—'}</span>
         </div>
       </div>
+
+      {reminder.enabled && (
+        <div className="reminder-status">
+          <span className={`reminder-dot${studiedToday ? ' done' : ''}`} />
+          {studiedToday
+            ? '今日已打卡，提醒任务完成'
+            : `每日提醒 ${formatReminderTimeLabel(reminder.time)} · 尚未打卡`}
+          <Link to="/me" className="muted" style={{ marginLeft: 'auto' }}>
+            设置
+          </Link>
+        </div>
+      )}
 
       <section className="section">
         <div className="section-head">
