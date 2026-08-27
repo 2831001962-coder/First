@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AppShell } from './components/AppShell'
 import { ReminderScheduler } from './components/ReminderScheduler'
 import { HomePage } from './pages/HomePage'
@@ -12,7 +12,7 @@ import { WrongBookPage } from './pages/WrongBookPage'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ReminderScheduler />
       <Routes>
         <Route element={<AppShell />}>
@@ -27,6 +27,6 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
