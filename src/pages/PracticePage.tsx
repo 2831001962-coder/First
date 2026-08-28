@@ -1,14 +1,24 @@
 import { Link } from 'react-router-dom'
-import { CATEGORIES, QUESTIONS, type CategoryId } from '../data/questions'
+import {
+  getBankStats,
+  getQuestionsBySubject,
+  XINGCE_CATEGORIES,
+} from '../data/bank/registry'
+import type { XingceCategoryId } from '../data/bank/types'
+import { SHENLUN_TOPICS } from '../data/shenlun'
 import { useProgress } from '../lib/progress'
 
 export function PracticePage() {
   const progress = useProgress()
+  const stats = getBankStats(SHENLUN_TOPICS.length)
+  const xingce = getQuestionsBySubject('xingce')
 
   return (
     <div className="page">
       <h1 className="page-title">行测训练</h1>
-      <p className="page-sub">言语 · 数量 · 判断 · 资料 · 常识，按模块突破</p>
+      <p className="page-sub">
+        言语 · 数量 · 判断 · 资料 · 常识 · 共 {stats.xingce} 题
+      </p>
 
       <div className="task-list" style={{ marginBottom: 22 }}>
         <Link className="task-item" to="/practice/quiz?mode=daily">
@@ -32,16 +42,22 @@ export function PracticePage() {
             <div className="desc">待消化 {progress.wrongBook.length} 题</div>
           </div>
         </Link>
+        <Link className="task-item" to="/bank">
+          <div className="icon">库</div>
+          <div className="body">
+            <div className="title">题库总览</div>
+            <div className="desc">行测 + 专业 + 申论 · {stats.totalObjective + stats.shenlun} 题</div>
+          </div>
+        </Link>
       </div>
 
       <div className="section-head">
         <h2>按模块刷题</h2>
-        <p>共 {QUESTIONS.length} 题示例题库</p>
       </div>
 
-      {(Object.keys(CATEGORIES) as CategoryId[]).map((id) => {
-        const cat = CATEGORIES[id]
-        const list = QUESTIONS.filter((q) => q.category === id)
+      {(Object.keys(XINGCE_CATEGORIES) as XingceCategoryId[]).map((id) => {
+        const cat = XINGCE_CATEGORIES[id]
+        const list = xingce.filter((q) => q.category === id)
         const done = list.filter((q) => progress.answered[q.id]).length
         const pct = list.length ? Math.round((done / list.length) * 100) : 0
         return (

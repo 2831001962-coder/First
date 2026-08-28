@@ -1,7 +1,9 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AppShell } from './components/AppShell'
 import { ReminderScheduler } from './components/ReminderScheduler'
+import { BankPage } from './pages/BankPage'
 import { HomePage } from './pages/HomePage'
+import { ProPage } from './pages/ProPage'
 import { MePage } from './pages/MePage'
 import { MockPage } from './pages/MockPage'
 import { PracticePage } from './pages/PracticePage'
@@ -23,6 +25,9 @@ export default function App() {
           <Route path="wrong" element={<WrongBookPage />} />
           <Route path="shenlun" element={<ShenlunPage />} />
           <Route path="shenlun/:id" element={<ShenlunDetailPage />} />
+          <Route path="pro" element={<ProPage />} />
+          <Route path="pro/quiz" element={<QuizPage subject="zhuanye" />} />
+          <Route path="bank" element={<BankPage />} />
           <Route path="me" element={<MePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>

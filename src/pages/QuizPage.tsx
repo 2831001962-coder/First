@@ -2,12 +2,13 @@ import { useMemo, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { QuestionFigure } from '../components/figures/PatternFigures'
 import {
-  CATEGORIES,
-  QUESTIONS,
+  getQuestionsBySubject,
   getQuestionsByCategory,
-  type CategoryId,
-  type Question,
-} from '../data/questions'
+  SUBJECTS,
+  XINGCE_CATEGORIES,
+  ZHUANYE_CATEGORIES,
+} from '../data/bank/registry'
+import type { CategoryId, SubjectId } from '../data/bank/types'
 import { addStudyMinutes, recordAnswer, setMockBestScore, useProgress } from '../lib/progress'
 
 function shuffle<T>(arr: T[]): T[] {
@@ -19,41 +20,61 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-function buildQueue(params: URLSearchParams, wrongIds: string[]): Question[] {
+function buildQueue(
+  params: URLSearchParams,
+  wrongIds: string[],
+  subject: SubjectId,
+) {
   const mode = params.get('mode')
-  const category = params.get('category') as CategoryId | 'all' | null
+  const category = params.get('category') as CategoryId | null
   const wrongOnly = params.get('wrong') === '1'
+  const pool = getQuestionsBySubject(subject)
 
   if (wrongOnly) {
-    return QUESTIONS.filter((q) => wrongIds.includes(q.id))
+    return pool.filter((q) => wrongIds.includes(q.id))
   }
 
   if (mode === 'daily') {
-    return shuffle(QUESTIONS).slice(0, Math.min(10, QUESTIONS.length))
+    return shuffle(pool).slice(0, Math.min(10, pool.length))
   }
 
   if (mode === 'mock') {
-    return shuffle(QUESTIONS).slice(0, Math.min(15, QUESTIONS.length))
+    return shuffle(pool).slice(0, Math.min(15, pool.length))
   }
 
-  if (category && category !== 'all' && category in CATEGORIES) {
-    return getQuestionsByCategory(category)
+  if (category) {
+    return getQuestionsByCategory(subject, category)
   }
 
-  return shuffle(QUESTIONS).slice(0, 10)
+  return shuffle(pool).slice(0, 10)
 }
 
-export function QuizPage() {
+function categoryLabel(subject: SubjectId, category: CategoryId) {
+  if (subject === 'xingce' && category in XINGCE_CATEGORIES) {
+    return XINGCE_CATEGORIES[category as keyof typeof XINGCE_CATEGORIES]
+  }
+  if (subject === 'zhuanye' && category in ZHUANYE_CATEGORIES) {
+    return ZHUANYE_CATEGORIES[category as keyof typeof ZHUANYE_CATEGORIES]
+  }
+  return { short: '题', name: '练习', color: 'var(--sea)' }
+}
+
+type QuizPageProps = {
+  subject?: SubjectId
+}
+
+export function QuizPage({ subject: subjectProp = 'xingce' }: QuizPageProps) {
   const [params] = useSearchParams()
   const navigate = useNavigate()
   const progress = useProgress()
+  const subject = (params.get('subject') as SubjectId) || subjectProp
   const isMock = params.get('mode') === 'mock'
   const wrongOnly = params.get('wrong') === '1'
+  const backPath = subject === 'zhuanye' ? '/pro' : '/practice'
 
   const queue = useMemo(
-    () => buildQueue(params, progress.wrongBook.map((w) => w.questionId)),
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- queue fixed per session entry
-    [params.toString()],
+    () => buildQueue(params, progress.wrongBook.map((w) => w.questionId), subject),
+    [params.toString(), subject, progress.wrongBook.length],
   )
 
   const [index, setIndex] = useState(0)
@@ -66,10 +87,10 @@ export function QuizPage() {
   if (!queue.length) {
     return (
       <div className="page">
-        <h1 className="page-title">{wrongOnly ? '错题复习' : '练题'}</h1>
+        <h1 className="page-title">{wrongOnly ? '错题复习' : SUBJECTS[subject].short + '练题'}</h1>
         <div className="empty">
-          <p>{wrongOnly ? '错题本是空的，继续保持！' : '暂无题目'}</p>
-          <Link className="btn btn-solid" to={wrongOnly ? '/practice' : '/'}>
+          <p>{wrongOnly ? '错题本是空的，继续保持！' : '该模块暂无题目'}</p>
+          <Link className="btn btn-solid" to={backPath}>
             返回
           </Link>
         </div>
@@ -78,7 +99,7 @@ export function QuizPage() {
   }
 
   const q = queue[index]
-  const cat = CATEGORIES[q.category]
+  const cat = categoryLabel(subject, q.category)
   const pct = Math.round(((index + (revealed ? 1 : 0)) / queue.length) * 100)
 
   function onSelect(i: number) {
@@ -110,13 +131,18 @@ export function QuizPage() {
     setRevealed(false)
   }
 
+  const dailyLink =
+    subject === 'zhuanye'
+      ? '/pro/quiz?mode=daily'
+      : '/practice/quiz?mode=daily'
+
   if (finished) {
     const score = Math.round((correctCount / queue.length) * 100)
     return (
       <div className="page">
         <div className="result-hero">
           <div className="muted" style={{ color: 'rgba(255,255,255,.75)' }}>
-            {isMock ? '迷你模考完成' : '本轮练习完成'}
+            {isMock ? '迷你模考完成' : `${SUBJECTS[subject].short}练习完成`}
           </div>
           <div className="score">{score}</div>
           <div>
@@ -133,7 +159,7 @@ export function QuizPage() {
           </Link>
         </div>
         <div className="quiz-actions">
-          <Link className="btn btn-primary" to="/practice/quiz?mode=daily" style={{ flex: 1 }}>
+          <Link className="btn btn-primary" to={dailyLink} style={{ flex: 1 }}>
             再来一组
           </Link>
         </div>

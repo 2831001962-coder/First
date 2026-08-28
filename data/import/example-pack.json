@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "id": "custom-example",
+    "subject": "zhuanye",
+    "category": "falv",
+    "name": "自定义法律题包示例",
+    "description": "将此文件复制到 data/import/ 后运行 npm run import:bank",
+    "version": 1
+  },
+  "questions": [
+    {
+      "id": "custom-falv-001",
+      "stem": "示例：行政行为的合法性审查，主要审查的是？",
+      "options": [
+        "A. 是否超越职权",
+        "B. 是否美观",
+        "C. 是否盈利",
+        "D. 是否保密"
+      ],
+      "answer": 0,
+      "explanation": "合法性审查关注职权、程序、适用法律等。",
+      "difficulty": 1,
+      "tags": ["行政法"]
+    }
+  ]
+}

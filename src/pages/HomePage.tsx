@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { ReminderBanner } from '../components/ReminderBanner'
 import { SampleBadge } from '../components/SampleBadge'
-import { CATEGORIES, QUESTIONS, type CategoryId } from '../data/questions'
+import { CATEGORIES, getBankStats, getQuestionsBySubject, type XingceCategoryId } from '../data/questions'
+import { SHENLUN_TOPICS } from '../data/shenlun'
 import { daysUntil, useProgress } from '../lib/progress'
 import { EXAM_TYPES } from '../lib/exam'
 import { formatReminderTimeLabel, hasStudiedToday, useReminder } from '../lib/reminder'
@@ -15,9 +16,12 @@ export function HomePage() {
   const accuracy = answeredCount ? Math.round((correctCount / answeredCount) * 100) : 0
   const studiedToday = hasStudiedToday(progress.lastStudyDate)
 
-  const weak = (Object.keys(CATEGORIES) as CategoryId[])
+  const stats = getBankStats(SHENLUN_TOPICS.length)
+  const xingce = getQuestionsBySubject('xingce')
+
+  const weak = (Object.keys(CATEGORIES) as XingceCategoryId[])
     .map((id) => {
-      const qs = QUESTIONS.filter((q) => q.category === id)
+      const qs = xingce.filter((q) => q.category === id)
       const done = qs.filter((q) => progress.answered[q.id])
       const wrong = done.filter((q) => !progress.answered[q.id]?.correct).length
       return { id, wrong, total: qs.length, done: done.length }
@@ -31,7 +35,7 @@ export function HomePage() {
 
       <header className="hero-home">
         <p className="brand">岸途</p>
-        <p className="tagline">行测日拱一卒，申论落笔成章。向岸而行，稳稳上岸。</p>
+        <p className="tagline">行测 · 申论 · 专业，三大科目一站备考。</p>
         <div className="wave-line" aria-hidden />
         <div className="cta-row">
           <Link className="btn btn-primary" to="/practice/quiz?mode=daily">
@@ -90,6 +94,13 @@ export function HomePage() {
               <div className="desc">看材料、列提纲、抓关键词</div>
             </div>
           </Link>
+          <Link className="task-item" to="/pro">
+            <div className="icon">专</div>
+            <div className="body">
+              <div className="title">专业知识 · 加试岗位</div>
+              <div className="desc">法律 / 财会 / 公安 / 金融等 · {stats.zhuanye} 题</div>
+            </div>
+          </Link>
           <Link className="task-item" to="/wrong">
             <div className="icon">复</div>
             <div className="body">
@@ -110,10 +121,10 @@ export function HomePage() {
           </Link>
         </div>
         <div className="cat-grid">
-          {(Object.keys(CATEGORIES) as CategoryId[]).map((id) => {
+          {(Object.keys(CATEGORIES) as XingceCategoryId[]).map((id) => {
             const cat = CATEGORIES[id]
-            const total = QUESTIONS.filter((q) => q.category === id).length
-            const done = QUESTIONS.filter((q) => q.category === id && progress.answered[q.id]).length
+            const total = xingce.filter((q) => q.category === id).length
+            const done = xingce.filter((q) => q.category === id && progress.answered[q.id]).length
             return (
               <Link key={id} className="cat-tile" to={`/practice/quiz?category=${id}`}>
                 <div className="dot" style={{ background: cat.color }} />

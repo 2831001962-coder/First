@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { QUESTIONS } from '../data/questions'
+import { getBankStats } from '../data/questions'
+import { SHENLUN_TOPICS } from '../data/shenlun'
 import {
   daysUntil,
   resetProgress,
@@ -26,6 +27,7 @@ import {
 export function MePage() {
   const progress = useProgress()
   const reminder = useReminder()
+  const stats = getBankStats(SHENLUN_TOPICS.length)
   const answered = Object.keys(progress.answered).length
   const correct = Object.values(progress.answered).filter((a) => a.correct).length
   const accuracy = answered ? Math.round((correct / answered) * 100) : 0
@@ -112,7 +114,7 @@ export function MePage() {
             <span className="label">已做题</span>
             <span className="value">
               {answered}
-              <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>/{QUESTIONS.length}</span>
+              <span style={{ fontSize: '0.75rem', fontWeight: 500 }}>/{stats.totalObjective}</span>
             </span>
           </div>
           <div className="stat-pill">
@@ -232,6 +234,12 @@ export function MePage() {
         <div className="section-head">
           <h2>快捷入口</h2>
         </div>
+        <Link className="list-card" to="/bank">
+          <h3>题库总览</h3>
+          <p>
+            行测 {stats.xingce} · 专业 {stats.zhuanye} · 申论 {stats.shenlun}
+          </p>
+        </Link>
         <Link className="list-card" to="/wrong">
           <h3>错题本</h3>
           <p>{progress.wrongBook.length} 道待消化</p>

@@ -1,6 +1,20 @@
 import { Link } from 'react-router-dom'
-import { CATEGORIES, getQuestionById } from '../data/questions'
+import {
+  getQuestionById,
+  XINGCE_CATEGORIES,
+  ZHUANYE_CATEGORIES,
+} from '../data/bank/registry'
 import { removeFromWrongBook, useProgress } from '../lib/progress'
+
+function catMeta(category: string) {
+  if (category in XINGCE_CATEGORIES) {
+    return XINGCE_CATEGORIES[category as keyof typeof XINGCE_CATEGORIES]
+  }
+  if (category in ZHUANYE_CATEGORIES) {
+    return ZHUANYE_CATEGORIES[category as keyof typeof ZHUANYE_CATEGORIES]
+  }
+  return { short: '?', color: 'var(--sea)' }
+}
 
 export function WrongBookPage() {
   const progress = useProgress()
@@ -9,7 +23,7 @@ export function WrongBookPage() {
   return (
     <div className="page">
       <h1 className="page-title">错题本</h1>
-      <p className="page-sub">错一次记一次，对一次消一条</p>
+      <p className="page-sub">错一次记一次，对一次消一条（行测 + 专业）</p>
 
       {items.length > 0 && (
         <Link className="btn btn-solid" to="/practice/quiz?wrong=1" style={{ marginBottom: 16 }}>
@@ -28,7 +42,7 @@ export function WrongBookPage() {
         items.map((item) => {
           const q = getQuestionById(item.questionId)
           if (!q) return null
-          const cat = CATEGORIES[q.category]
+          const cat = catMeta(q.category)
           return (
             <div key={item.questionId} className="list-card">
               <div className="eyebrow" style={{ color: cat.color }}>
@@ -42,7 +56,7 @@ export function WrongBookPage() {
               <div className="quiz-actions" style={{ marginTop: 12 }}>
                 <Link
                   className="btn btn-outline"
-                  to={`/practice/quiz?wrong=1`}
+                  to="/practice/quiz?wrong=1"
                   style={{ flex: 1, fontSize: '0.85rem' }}
                 >
                   去复习

@@ -1,0 +1,402 @@
+{
+  "meta": {
+    "id": "zhuanye-waiyu-seed",
+    "subject": "zhuanye",
+    "category": "waiyu",
+    "name": "外语专业知识",
+    "description": "英语阅读与翻译（适用外交部、商务外语类岗位）",
+    "version": 1
+  },
+  "questions": [
+    {
+      "id": "waiyu-001",
+      "stem": "【外语专业知识】Choose the best translation:\n\"Governance lies in addressing concerns.\"",
+      "options": [
+        "A. 治政之道，在于安民",
+        "B. 政治在于演讲",
+        "C. 治理在于开会",
+        "D. 管理在于监督"
+      ],
+      "answer": 0,
+      "explanation": "addressing concerns 意指回应关切、安民。",
+      "difficulty": 1
+    },
+    {
+      "id": "waiyu-002",
+      "stem": "【外语专业知识】The phrase \"due diligence\" in finance means",
+      "options": [
+        "A. 尽职加班",
+        "B. 尽职免责",
+        "C. 延迟付款",
+        "D. 尽职调查"
+      ],
+      "answer": 3,
+      "explanation": "due diligence 译为尽职调查。",
+      "difficulty": 2
+    },
+    {
+      "id": "waiyu-003",
+      "stem": "【外语专业知识】\"Notwithstanding\" 在法律文本中通常表示",
+      "options": [
+        "A. 因此",
+        "B. 尽管、不论",
+        "C. 并且",
+        "D. 然而"
+      ],
+      "answer": 1,
+      "explanation": "notwithstanding = despite。",
+      "difficulty": 3
+    },
+    {
+      "id": "waiyu-004",
+      "stem": "【外语专业知识】Passive voice: \"The policy was implemented.\" 强调",
+      "options": [
+        "A. 虚拟语气",
+        "B. 施动者未知",
+        "C. 将来时",
+        "D. 政策被实施（动作承受者）"
+      ],
+      "answer": 3,
+      "explanation": "被动语态强调承受者或施动者省略。",
+      "difficulty": 1
+    },
+    {
+      "id": "waiyu-005",
+      "stem": "【外语专业知识】\"Public procurement\" refers to",
+      "options": [
+        "A. 政府采购",
+        "B. 公开采购私人财产",
+        "C. 公共采购员",
+        "D. 采购公开化流程"
+      ],
+      "answer": 0,
+      "explanation": "public procurement 即政府采购。",
+      "difficulty": 2
+    },
+    {
+      "id": "waiyu-006",
+      "stem": "【外语专业知识】Choose the best translation:\n\"Governance lies in addressing concerns.\"",
+      "options": [
+        "A. 管理在于监督",
+        "B. 治理在于开会",
+        "C. 政治在于演讲",
+        "D. 治政之道，在于安民"
+      ],
+      "answer": 3,
+      "explanation": "addressing concerns 意指回应关切、安民。",
+      "difficulty": 3
+    },
+    {
+      "id": "waiyu-007",
+      "stem": "【外语专业知识】The phrase \"due diligence\" in finance means",
+      "options": [
+        "A. 尽职调查",
+        "B. 延迟付款",
+        "C. 尽职免责",
+        "D. 尽职加班"
+      ],
+      "answer": 0,
+      "explanation": "due diligence 译为尽职调查。",
+      "difficulty": 1
+    },
+    {
+      "id": "waiyu-008",
+      "stem": "【外语专业知识】\"Notwithstanding\" 在法律文本中通常表示",
+      "options": [
+        "A. 然而",
+        "B. 因此",
+        "C. 尽管、不论",
+        "D. 并且"
+      ],
+      "answer": 2,
+      "explanation": "notwithstanding = despite。",
+      "difficulty": 2
+    },
+    {
+      "id": "waiyu-009",
+      "stem": "【外语专业知识】Passive voice: \"The policy was implemented.\" 强调",
+      "options": [
+        "A. 虚拟语气",
+        "B. 政策被实施（动作承受者）",
+        "C. 施动者未知",
+        "D. 将来时"
+      ],
+      "answer": 1,
+      "explanation": "被动语态强调承受者或施动者省略。",
+      "difficulty": 3
+    },
+    {
+      "id": "waiyu-010",
+      "stem": "【外语专业知识】\"Public procurement\" refers to",
+      "options": [
+        "A. 政府采购",
+        "B. 公开采购私人财产",
+        "C. 公共采购员",
+        "D. 采购公开化流程"
+      ],
+      "answer": 0,
+      "explanation": "public procurement 即政府采购。",
+      "difficulty": 1
+    },
+    {
+      "id": "waiyu-011",
+      "stem": "【外语专业知识】Choose the best translation:\n\"Governance lies in addressing concerns.\"",
+      "options": [
+        "A. 治政之道，在于安民",
+        "B. 治理在于开会",
+        "C. 管理在于监督",
+        "D. 政治在于演讲"
+      ],
+      "answer": 0,
+      "explanation": "addressing concerns 意指回应关切、安民。",
+      "difficulty": 2
+    },
+    {
+      "id": "waiyu-012",
+      "stem": "【外语专业知识】The phrase \"due diligence\" in finance means",
+      "options": [
+        "A. 尽职加班",
+        "B. 尽职免责",
+        "C. 延迟付款",
+        "D. 尽职调查"
+      ],
+      "answer": 3,
+      "explanation": "due diligence 译为尽职调查。",
+      "difficulty": 3
+    },
+    {
+      "id": "waiyu-013",
+      "stem": "【外语专业知识】\"Notwithstanding\" 在法律文本中通常表示",
+      "options": [
+        "A. 因此",
+        "B. 并且",
+        "C. 尽管、不论",
+        "D. 然而"
+      ],
+      "answer": 2,
+      "explanation": "notwithstanding = despite。",
+      "difficulty": 1
+    },
+    {
+      "id": "waiyu-014",
+      "stem": "【外语专业知识】Passive voice: \"The policy was implemented.\" 强调",
+      "options": [
+        "A. 将来时",
+        "B. 施动者未知",
+        "C. 政策被实施（动作承受者）",
+        "D. 虚拟语气"
+      ],
+      "answer": 2,
+      "explanation": "被动语态强调承受者或施动者省略。",
+      "difficulty": 2
+    },
+    {
+      "id": "waiyu-015",
+      "stem": "【外语专业知识】\"Public procurement\" refers to",
+      "options": [
+        "A. 采购公开化流程",
+        "B. 公共采购员",
+        "C. 公开采购私人财产",
+        "D. 政府采购"
+      ],
+      "answer": 3,
+      "explanation": "public procurement 即政府采购。",
+      "difficulty": 3
+    },
+    {
+      "id": "waiyu-016",
+      "stem": "【外语专业知识】Choose the best translation:\n\"Governance lies in addressing concerns.\"",
+      "options": [
+        "A. 政治在于演讲",
+        "B. 管理在于监督",
+        "C. 治理在于开会",
+        "D. 治政之道，在于安民"
+      ],
+      "answer": 3,
+      "explanation": "addressing concerns 意指回应关切、安民。",
+      "difficulty": 1
+    },
+    {
+      "id": "waiyu-017",
+      "stem": "【外语专业知识】The phrase \"due diligence\" in finance means",
+      "options": [
+        "A. 尽职加班",
+        "B. 尽职调查",
+        "C. 延迟付款",
+        "D. 尽职免责"
+      ],
+      "answer": 1,
+      "explanation": "due diligence 译为尽职调查。",
+      "difficulty": 2
+    },
+    {
+      "id": "waiyu-018",
+      "stem": "【外语专业知识】\"Notwithstanding\" 在法律文本中通常表示",
+      "options": [
+        "A. 然而",
+        "B. 并且",
+        "C. 因此",
+        "D. 尽管、不论"
+      ],
+      "answer": 3,
+      "explanation": "notwithstanding = despite。",
+      "difficulty": 3
+    },
+    {
+      "id": "waiyu-019",
+      "stem": "【外语专业知识】Passive voice: \"The policy was implemented.\" 强调",
+      "options": [
+        "A. 施动者未知",
+        "B. 虚拟语气",
+        "C. 政策被实施（动作承受者）",
+        "D. 将来时"
+      ],
+      "answer": 2,
+      "explanation": "被动语态强调承受者或施动者省略。",
+      "difficulty": 1
+    },
+    {
+      "id": "waiyu-020",
+      "stem": "【外语专业知识】\"Public procurement\" refers to",
+      "options": [
+        "A. 采购公开化流程",
+        "B. 公开采购私人财产",
+        "C. 政府采购",
+        "D. 公共采购员"
+      ],
+      "answer": 2,
+      "explanation": "public procurement 即政府采购。",
+      "difficulty": 2
+    },
+    {
+      "id": "waiyu-021",
+      "stem": "【外语专业知识】Choose the best translation:\n\"Governance lies in addressing concerns.\"",
+      "options": [
+        "A. 治政之道，在于安民",
+        "B. 治理在于开会",
+        "C. 管理在于监督",
+        "D. 政治在于演讲"
+      ],
+      "answer": 0,
+      "explanation": "addressing concerns 意指回应关切、安民。",
+      "difficulty": 3
+    },
+    {
+      "id": "waiyu-022",
+      "stem": "【外语专业知识】The phrase \"due diligence\" in finance means",
+      "options": [
+        "A. 尽职免责",
+        "B. 尽职加班",
+        "C. 尽职调查",
+        "D. 延迟付款"
+      ],
+      "answer": 2,
+      "explanation": "due diligence 译为尽职调查。",
+      "difficulty": 1
+    },
+    {
+      "id": "waiyu-023",
+      "stem": "【外语专业知识】\"Notwithstanding\" 在法律文本中通常表示",
+      "options": [
+        "A. 尽管、不论",
+        "B. 因此",
+        "C. 然而",
+        "D. 并且"
+      ],
+      "answer": 0,
+      "explanation": "notwithstanding = despite。",
+      "difficulty": 2
+    },
+    {
+      "id": "waiyu-024",
+      "stem": "【外语专业知识】Passive voice: \"The policy was implemented.\" 强调",
+      "options": [
+        "A. 虚拟语气",
+        "B. 将来时",
+        "C. 施动者未知",
+        "D. 政策被实施（动作承受者）"
+      ],
+      "answer": 3,
+      "explanation": "被动语态强调承受者或施动者省略。",
+      "difficulty": 3
+    },
+    {
+      "id": "waiyu-025",
+      "stem": "【外语专业知识】\"Public procurement\" refers to",
+      "options": [
+        "A. 公共采购员",
+        "B. 公开采购私人财产",
+        "C. 采购公开化流程",
+        "D. 政府采购"
+      ],
+      "answer": 3,
+      "explanation": "public procurement 即政府采购。",
+      "difficulty": 1
+    },
+    {
+      "id": "waiyu-026",
+      "stem": "【外语专业知识】Choose the best translation:\n\"Governance lies in addressing concerns.\"",
+      "options": [
+        "A. 治政之道，在于安民",
+        "B. 治理在于开会",
+        "C. 管理在于监督",
+        "D. 政治在于演讲"
+      ],
+      "answer": 0,
+      "explanation": "addressing concerns 意指回应关切、安民。",
+      "difficulty": 2
+    },
+    {
+      "id": "waiyu-027",
+      "stem": "【外语专业知识】The phrase \"due diligence\" in finance means",
+      "options": [
+        "A. 尽职调查",
+        "B. 延迟付款",
+        "C. 尽职免责",
+        "D. 尽职加班"
+      ],
+      "answer": 0,
+      "explanation": "due diligence 译为尽职调查。",
+      "difficulty": 3
+    },
+    {
+      "id": "waiyu-028",
+      "stem": "【外语专业知识】\"Notwithstanding\" 在法律文本中通常表示",
+      "options": [
+        "A. 尽管、不论",
+        "B. 因此",
+        "C. 然而",
+        "D. 并且"
+      ],
+      "answer": 0,
+      "explanation": "notwithstanding = despite。",
+      "difficulty": 1
+    },
+    {
+      "id": "waiyu-029",
+      "stem": "【外语专业知识】Passive voice: \"The policy was implemented.\" 强调",
+      "options": [
+        "A. 政策被实施（动作承受者）",
+        "B. 虚拟语气",
+        "C. 施动者未知",
+        "D. 将来时"
+      ],
+      "answer": 0,
+      "explanation": "被动语态强调承受者或施动者省略。",
+      "difficulty": 2
+    },
+    {
+      "id": "waiyu-030",
+      "stem": "【外语专业知识】\"Public procurement\" refers to",
+      "options": [
+        "A. 公开采购私人财产",
+        "B. 采购公开化流程",
+        "C. 政府采购",
+        "D. 公共采购员"
+      ],
+      "answer": 2,
+      "explanation": "public procurement 即政府采购。",
+      "difficulty": 3
+    }
+  ]
+}

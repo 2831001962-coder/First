@@ -18,6 +18,12 @@ const icons = {
       <path d="M15 4v4h4M8 12h8M8 16h6" />
     </svg>
   ),
+  pro: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <path d="M12 3 4 7v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V7l-8-4Z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  ),
   me: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
       <circle cx="12" cy="8" r="3.5" />
@@ -30,7 +36,7 @@ export function AppShell() {
   return (
     <div className="app-shell">
       <Outlet />
-      <nav className="bottom-nav" aria-label="主导航">
+      <nav className="bottom-nav bottom-nav-5" aria-label="主导航">
         <NavLink to="/" end className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
           {icons.home}
           首页
@@ -48,6 +54,10 @@ export function AppShell() {
         >
           {icons.shenlun}
           申论
+        </NavLink>
+        <NavLink to="/pro" className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
+          {icons.pro}
+          专业
         </NavLink>
         <NavLink to="/me" className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
           {icons.me}

@@ -1,0 +1,402 @@
+{
+  "meta": {
+    "id": "zhuanye-jisuanji-seed",
+    "subject": "zhuanye",
+    "category": "jisuanji",
+    "name": "计算机专业知识",
+    "description": "网络、数据库、信息安全（适用网信、信息化类岗位）",
+    "version": 1
+  },
+  "questions": [
+    {
+      "id": "jisuanji-001",
+      "stem": "【计算机专业知识】TCP/IP 模型中，HTTP 位于",
+      "options": [
+        "A. 数据链路层",
+        "B. 网络层",
+        "C. 传输层",
+        "D. 应用层"
+      ],
+      "answer": 3,
+      "explanation": "HTTP 是应用层协议。",
+      "difficulty": 1
+    },
+    {
+      "id": "jisuanji-002",
+      "stem": "【计算机专业知识】关系数据库中，用于保证实体完整性的约束是",
+      "options": [
+        "A. 外键约束",
+        "B. 主键约束",
+        "C. 唯一索引",
+        "D. 检查约束"
+      ],
+      "answer": 1,
+      "explanation": "主键保证实体完整性。",
+      "difficulty": 2
+    },
+    {
+      "id": "jisuanji-003",
+      "stem": "【计算机专业知识】下列属于对称加密算法的是",
+      "options": [
+        "A. RSA",
+        "B. ECC",
+        "C. DSA",
+        "D. AES"
+      ],
+      "answer": 3,
+      "explanation": "AES 为对称加密；RSA 等为非对称。",
+      "difficulty": 3
+    },
+    {
+      "id": "jisuanji-004",
+      "stem": "【计算机专业知识】SQL 中用于去重的是",
+      "options": [
+        "A. SELECT DISTINCT",
+        "B. SELECT UNIQUE ALL",
+        "C. SELECT GROUP",
+        "D. SELECT ONLY"
+      ],
+      "answer": 0,
+      "explanation": "DISTINCT 去重。",
+      "difficulty": 1
+    },
+    {
+      "id": "jisuanji-005",
+      "stem": "【计算机专业知识】HTTPS 在 HTTP 基础上增加了",
+      "options": [
+        "A. TLS/SSL 加密",
+        "B. FTP 传输",
+        "C. DNS 解析",
+        "D. ICMP 控制"
+      ],
+      "answer": 0,
+      "explanation": "HTTPS = HTTP + TLS。",
+      "difficulty": 2
+    },
+    {
+      "id": "jisuanji-006",
+      "stem": "【计算机专业知识】TCP/IP 模型中，HTTP 位于",
+      "options": [
+        "A. 数据链路层",
+        "B. 网络层",
+        "C. 传输层",
+        "D. 应用层"
+      ],
+      "answer": 3,
+      "explanation": "HTTP 是应用层协议。",
+      "difficulty": 3
+    },
+    {
+      "id": "jisuanji-007",
+      "stem": "【计算机专业知识】关系数据库中，用于保证实体完整性的约束是",
+      "options": [
+        "A. 检查约束",
+        "B. 主键约束",
+        "C. 唯一索引",
+        "D. 外键约束"
+      ],
+      "answer": 1,
+      "explanation": "主键保证实体完整性。",
+      "difficulty": 1
+    },
+    {
+      "id": "jisuanji-008",
+      "stem": "【计算机专业知识】下列属于对称加密算法的是",
+      "options": [
+        "A. AES",
+        "B. RSA",
+        "C. ECC",
+        "D. DSA"
+      ],
+      "answer": 0,
+      "explanation": "AES 为对称加密；RSA 等为非对称。",
+      "difficulty": 2
+    },
+    {
+      "id": "jisuanji-009",
+      "stem": "【计算机专业知识】SQL 中用于去重的是",
+      "options": [
+        "A. SELECT DISTINCT",
+        "B. SELECT UNIQUE ALL",
+        "C. SELECT ONLY",
+        "D. SELECT GROUP"
+      ],
+      "answer": 0,
+      "explanation": "DISTINCT 去重。",
+      "difficulty": 3
+    },
+    {
+      "id": "jisuanji-010",
+      "stem": "【计算机专业知识】HTTPS 在 HTTP 基础上增加了",
+      "options": [
+        "A. TLS/SSL 加密",
+        "B. FTP 传输",
+        "C. DNS 解析",
+        "D. ICMP 控制"
+      ],
+      "answer": 0,
+      "explanation": "HTTPS = HTTP + TLS。",
+      "difficulty": 1
+    },
+    {
+      "id": "jisuanji-011",
+      "stem": "【计算机专业知识】TCP/IP 模型中，HTTP 位于",
+      "options": [
+        "A. 数据链路层",
+        "B. 应用层",
+        "C. 传输层",
+        "D. 网络层"
+      ],
+      "answer": 1,
+      "explanation": "HTTP 是应用层协议。",
+      "difficulty": 2
+    },
+    {
+      "id": "jisuanji-012",
+      "stem": "【计算机专业知识】关系数据库中，用于保证实体完整性的约束是",
+      "options": [
+        "A. 主键约束",
+        "B. 外键约束",
+        "C. 检查约束",
+        "D. 唯一索引"
+      ],
+      "answer": 0,
+      "explanation": "主键保证实体完整性。",
+      "difficulty": 3
+    },
+    {
+      "id": "jisuanji-013",
+      "stem": "【计算机专业知识】下列属于对称加密算法的是",
+      "options": [
+        "A. DSA",
+        "B. AES",
+        "C. RSA",
+        "D. ECC"
+      ],
+      "answer": 1,
+      "explanation": "AES 为对称加密；RSA 等为非对称。",
+      "difficulty": 1
+    },
+    {
+      "id": "jisuanji-014",
+      "stem": "【计算机专业知识】SQL 中用于去重的是",
+      "options": [
+        "A. SELECT ONLY",
+        "B. SELECT GROUP",
+        "C. SELECT UNIQUE ALL",
+        "D. SELECT DISTINCT"
+      ],
+      "answer": 3,
+      "explanation": "DISTINCT 去重。",
+      "difficulty": 2
+    },
+    {
+      "id": "jisuanji-015",
+      "stem": "【计算机专业知识】HTTPS 在 HTTP 基础上增加了",
+      "options": [
+        "A. TLS/SSL 加密",
+        "B. FTP 传输",
+        "C. DNS 解析",
+        "D. ICMP 控制"
+      ],
+      "answer": 0,
+      "explanation": "HTTPS = HTTP + TLS。",
+      "difficulty": 3
+    },
+    {
+      "id": "jisuanji-016",
+      "stem": "【计算机专业知识】TCP/IP 模型中，HTTP 位于",
+      "options": [
+        "A. 应用层",
+        "B. 传输层",
+        "C. 网络层",
+        "D. 数据链路层"
+      ],
+      "answer": 0,
+      "explanation": "HTTP 是应用层协议。",
+      "difficulty": 1
+    },
+    {
+      "id": "jisuanji-017",
+      "stem": "【计算机专业知识】关系数据库中，用于保证实体完整性的约束是",
+      "options": [
+        "A. 检查约束",
+        "B. 主键约束",
+        "C. 唯一索引",
+        "D. 外键约束"
+      ],
+      "answer": 1,
+      "explanation": "主键保证实体完整性。",
+      "difficulty": 2
+    },
+    {
+      "id": "jisuanji-018",
+      "stem": "【计算机专业知识】下列属于对称加密算法的是",
+      "options": [
+        "A. AES",
+        "B. RSA",
+        "C. ECC",
+        "D. DSA"
+      ],
+      "answer": 0,
+      "explanation": "AES 为对称加密；RSA 等为非对称。",
+      "difficulty": 3
+    },
+    {
+      "id": "jisuanji-019",
+      "stem": "【计算机专业知识】SQL 中用于去重的是",
+      "options": [
+        "A. SELECT ONLY",
+        "B. SELECT GROUP",
+        "C. SELECT UNIQUE ALL",
+        "D. SELECT DISTINCT"
+      ],
+      "answer": 3,
+      "explanation": "DISTINCT 去重。",
+      "difficulty": 1
+    },
+    {
+      "id": "jisuanji-020",
+      "stem": "【计算机专业知识】HTTPS 在 HTTP 基础上增加了",
+      "options": [
+        "A. FTP 传输",
+        "B. ICMP 控制",
+        "C. DNS 解析",
+        "D. TLS/SSL 加密"
+      ],
+      "answer": 3,
+      "explanation": "HTTPS = HTTP + TLS。",
+      "difficulty": 2
+    },
+    {
+      "id": "jisuanji-021",
+      "stem": "【计算机专业知识】TCP/IP 模型中，HTTP 位于",
+      "options": [
+        "A. 应用层",
+        "B. 传输层",
+        "C. 网络层",
+        "D. 数据链路层"
+      ],
+      "answer": 0,
+      "explanation": "HTTP 是应用层协议。",
+      "difficulty": 3
+    },
+    {
+      "id": "jisuanji-022",
+      "stem": "【计算机专业知识】关系数据库中，用于保证实体完整性的约束是",
+      "options": [
+        "A. 唯一索引",
+        "B. 主键约束",
+        "C. 外键约束",
+        "D. 检查约束"
+      ],
+      "answer": 1,
+      "explanation": "主键保证实体完整性。",
+      "difficulty": 1
+    },
+    {
+      "id": "jisuanji-023",
+      "stem": "【计算机专业知识】下列属于对称加密算法的是",
+      "options": [
+        "A. AES",
+        "B. RSA",
+        "C. ECC",
+        "D. DSA"
+      ],
+      "answer": 0,
+      "explanation": "AES 为对称加密；RSA 等为非对称。",
+      "difficulty": 2
+    },
+    {
+      "id": "jisuanji-024",
+      "stem": "【计算机专业知识】SQL 中用于去重的是",
+      "options": [
+        "A. SELECT GROUP",
+        "B. SELECT ONLY",
+        "C. SELECT UNIQUE ALL",
+        "D. SELECT DISTINCT"
+      ],
+      "answer": 3,
+      "explanation": "DISTINCT 去重。",
+      "difficulty": 3
+    },
+    {
+      "id": "jisuanji-025",
+      "stem": "【计算机专业知识】HTTPS 在 HTTP 基础上增加了",
+      "options": [
+        "A. DNS 解析",
+        "B. TLS/SSL 加密",
+        "C. FTP 传输",
+        "D. ICMP 控制"
+      ],
+      "answer": 1,
+      "explanation": "HTTPS = HTTP + TLS。",
+      "difficulty": 1
+    },
+    {
+      "id": "jisuanji-026",
+      "stem": "【计算机专业知识】TCP/IP 模型中，HTTP 位于",
+      "options": [
+        "A. 数据链路层",
+        "B. 网络层",
+        "C. 传输层",
+        "D. 应用层"
+      ],
+      "answer": 3,
+      "explanation": "HTTP 是应用层协议。",
+      "difficulty": 2
+    },
+    {
+      "id": "jisuanji-027",
+      "stem": "【计算机专业知识】关系数据库中，用于保证实体完整性的约束是",
+      "options": [
+        "A. 主键约束",
+        "B. 外键约束",
+        "C. 检查约束",
+        "D. 唯一索引"
+      ],
+      "answer": 0,
+      "explanation": "主键保证实体完整性。",
+      "difficulty": 3
+    },
+    {
+      "id": "jisuanji-028",
+      "stem": "【计算机专业知识】下列属于对称加密算法的是",
+      "options": [
+        "A. DSA",
+        "B. ECC",
+        "C. RSA",
+        "D. AES"
+      ],
+      "answer": 3,
+      "explanation": "AES 为对称加密；RSA 等为非对称。",
+      "difficulty": 1
+    },
+    {
+      "id": "jisuanji-029",
+      "stem": "【计算机专业知识】SQL 中用于去重的是",
+      "options": [
+        "A. SELECT DISTINCT",
+        "B. SELECT UNIQUE ALL",
+        "C. SELECT GROUP",
+        "D. SELECT ONLY"
+      ],
+      "answer": 0,
+      "explanation": "DISTINCT 去重。",
+      "difficulty": 2
+    },
+    {
+      "id": "jisuanji-030",
+      "stem": "【计算机专业知识】HTTPS 在 HTTP 基础上增加了",
+      "options": [
+        "A. ICMP 控制",
+        "B. DNS 解析",
+        "C. FTP 传输",
+        "D. TLS/SSL 加密"
+      ],
+      "answer": 3,
+      "explanation": "HTTPS = HTTP + TLS。",
+      "difficulty": 3
+    }
+  ]
+}
