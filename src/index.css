@@ -445,8 +445,78 @@ img {
   white-space: pre-wrap;
   font-size: 1.02rem;
   font-weight: 500;
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   line-height: 1.7;
+}
+
+.stem-figure {
+  margin-bottom: 18px;
+  padding: 16px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--line);
+  overflow-x: auto;
+}
+
+.question-figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.figure-sequence {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+  min-width: min-content;
+}
+
+.figure-seq-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.figure-seq-arrow {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  padding: 0 2px;
+}
+
+.figure-placeholder {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  border: 2px dashed rgba(11, 42, 58, 0.25);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--sea);
+  background: rgba(42, 154, 143, 0.08);
+}
+
+.options-figure {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.options-figure .option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.options-figure .option-label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink);
 }
 
 .options {

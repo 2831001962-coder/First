@@ -1,3 +1,5 @@
+import type { FigureId } from '../components/figures/PatternFigures'
+
 export type CategoryId =
   | 'yuyan'
   | 'shuliang'
@@ -13,6 +15,10 @@ export type Question = {
   answer: number
   explanation: string
   difficulty: 1 | 2 | 3
+  /** 题干配图（图形推理等） */
+  figure?: FigureId
+  /** 选项配图，与 options 一一对应 */
+  optionFigures?: FigureId[]
 }
 
 export const CATEGORIES: Record<
@@ -130,15 +136,17 @@ export const QUESTIONS: Question[] = [
   {
     id: 'pd-1',
     category: 'panduan',
-    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：\n\n（题干示意：圆形依次被一条、两条、三条直线分割；问号处应继续该规律）',
-    options: [
-      'A. 被四条直线分割的圆',
-      'B. 被两条曲线分割的圆',
-      'C. 完整未分割的圆',
-      'D. 三角形被三条直线分割',
+    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：',
+    figure: 'seq-lines-123q',
+    options: ['A', 'B', 'C', 'D'],
+    optionFigures: [
+      'circle-4-lines',
+      'circle-2-curves',
+      'circle-full',
+      'triangle-3-lines',
     ],
     answer: 0,
-    explanation: '直线数量递增：1、2、3、4，故选被四条直线分割的圆。',
+    explanation: '直线数量递增：1、2、3、4，故选 A（被四条直线分割的圆）。',
     difficulty: 1,
   },
   {

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { QuestionFigure } from '../components/figures/PatternFigures'
 import {
   CATEGORIES,
   QUESTIONS,
@@ -161,7 +162,13 @@ export function QuizPage() {
 
       <p className="stem">{q.stem}</p>
 
-      <div className="options">
+      {q.figure && (
+        <div className="stem-figure">
+          <QuestionFigure id={q.figure} size="lg" />
+        </div>
+      )}
+
+      <div className={`options${q.optionFigures ? ' options-figure' : ''}`}>
         {q.options.map((opt, i) => {
           let cls = 'option'
           if (revealed) {
@@ -171,8 +178,11 @@ export function QuizPage() {
             cls += ' selected'
           }
           return (
-            <button key={opt} type="button" className={cls} onClick={() => onSelect(i)}>
-              {opt}
+            <button key={opt + i} type="button" className={cls} onClick={() => onSelect(i)}>
+              {q.optionFigures?.[i] && (
+                <QuestionFigure id={q.optionFigures[i]} size="sm" />
+              )}
+              <span className="option-label">{opt}</span>
             </button>
           )
         })}
