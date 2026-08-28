@@ -1,4 +1,9 @@
 import { useCallback, useSyncExternalStore } from 'react'
+import {
+  defaultExamTarget,
+  nextExamDateForType,
+  type ExamType,
+} from './exam'
 
 const STORAGE_KEY = 'antu-progress-v1'
 
@@ -15,23 +20,22 @@ export type ProgressState = {
   lastStudyDate: string | null
   totalStudyMinutes: number
   mockBestScore: number | null
+  examType: ExamType
   examDate: string
 }
 
-const defaultState = (): ProgressState => ({
-  answered: {},
-  wrongBook: [],
-  streak: 0,
-  lastStudyDate: null,
-  totalStudyMinutes: 0,
-  mockBestScore: null,
-  examDate: nextMarchExamDate(),
-})
-
-function nextMarchExamDate(): string {
-  const now = new Date()
-  const year = now.getMonth() > 2 || (now.getMonth() === 2 && now.getDate() > 1) ? now.getFullYear() + 1 : now.getFullYear()
-  return `${year}-03-01`
+const defaultState = (): ProgressState => {
+  const target = defaultExamTarget()
+  return {
+    answered: {},
+    wrongBook: [],
+    streak: 0,
+    lastStudyDate: null,
+    totalStudyMinutes: 0,
+    mockBestScore: null,
+    examType: target.type,
+    examDate: target.date,
+  }
 }
 
 function load(): ProgressState {
@@ -128,6 +132,15 @@ export function setExamDate(date: string) {
   emit()
 }
 
+export function setExamType(type: ExamType) {
+  state = {
+    ...state,
+    examType: type,
+    examDate: nextExamDateForType(type),
+  }
+  emit()
+}
+
 export function resetProgress() {
   state = defaultState()
   emit()
@@ -144,6 +157,7 @@ export function useProgressActions() {
     addStudyMinutes: useCallback(addStudyMinutes, []),
     setMockBestScore: useCallback(setMockBestScore, []),
     setExamDate: useCallback(setExamDate, []),
+    setExamType: useCallback(setExamType, []),
     resetProgress: useCallback(resetProgress, []),
   }
 }

@@ -5,8 +5,15 @@ import {
   daysUntil,
   resetProgress,
   setExamDate,
+  setExamType,
   useProgress,
 } from '../lib/progress'
+import {
+  EXAM_TYPES,
+  formatExamDateLabel,
+  nextExamDateForType,
+  type ExamType,
+} from '../lib/exam'
 import {
   fireStudyNotification,
   formatReminderTimeLabel,
@@ -95,7 +102,10 @@ export function MePage() {
         <div className="brand-mark" style={{ fontSize: '1.6rem', marginBottom: 4 }}>
           上岸进度
         </div>
-        <p className="muted">距考试还有 {days} 天 · 已学约 {progress.totalStudyMinutes} 分钟</p>
+        <p className="muted">
+          目标：{formatExamDateLabel(progress.examDate, progress.examType)} · 还有 {days} 天 · 已学约{' '}
+          {progress.totalStudyMinutes} 分钟
+        </p>
 
         <div className="countdown-strip" style={{ marginTop: 16 }}>
           <div className="stat-pill">
@@ -116,13 +126,40 @@ export function MePage() {
         </div>
 
         <div className="field">
-          <label htmlFor="exam-date">目标考试日</label>
+          <label>备考目标</label>
+          <div className="chip-row" style={{ marginBottom: 0 }}>
+            {(['guokao', 'shengkao'] as ExamType[]).map((type) => (
+              <button
+                key={type}
+                type="button"
+                className={`chip${progress.examType === type ? ' active' : ''}`}
+                onClick={() => setExamType(type)}
+              >
+                {EXAM_TYPES[type].short}
+              </button>
+            ))}
+          </div>
+          <p className="muted" style={{ marginTop: 8 }}>
+            {EXAM_TYPES[progress.examType].desc}
+          </p>
+        </div>
+
+        <div className="field">
+          <label htmlFor="exam-date">考试日期</label>
           <input
             id="exam-date"
             type="date"
             value={progress.examDate}
             onChange={(e) => setExamDate(e.target.value)}
           />
+          <button
+            type="button"
+            className="btn btn-outline"
+            style={{ marginTop: 8, width: '100%', fontSize: '0.85rem' }}
+            onClick={() => setExamDate(nextExamDateForType(progress.examType))}
+          >
+            恢复为{EXAM_TYPES[progress.examType].short}默认日期
+          </button>
         </div>
       </div>
 

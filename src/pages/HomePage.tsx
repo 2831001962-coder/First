@@ -3,6 +3,7 @@ import { ReminderBanner } from '../components/ReminderBanner'
 import { SampleBadge } from '../components/SampleBadge'
 import { CATEGORIES, QUESTIONS, type CategoryId } from '../data/questions'
 import { daysUntil, useProgress } from '../lib/progress'
+import { EXAM_TYPES } from '../lib/exam'
 import { formatReminderTimeLabel, hasStudiedToday, useReminder } from '../lib/reminder'
 
 export function HomePage() {
@@ -44,7 +45,7 @@ export function HomePage() {
 
       <div className="countdown-strip">
         <div className="stat-pill">
-          <span className="label">距考试</span>
+          <span className="label">距{EXAM_TYPES[progress.examType].short}</span>
           <span className="value">{days} 天</span>
         </div>
         <div className="stat-pill">
