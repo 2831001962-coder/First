@@ -80,6 +80,13 @@ export function HomePage() {
               <div className="desc">覆盖五大模块，限时强化手感</div>
             </div>
           </Link>
+          <Link className="task-item" to="/practice/quiz?subtype=tuxing">
+            <div className="icon">图</div>
+            <div className="body">
+              <div className="title">图形推理专练</div>
+              <div className="desc">SVG 真题风格图示，练数量/位置/样式规律</div>
+            </div>
+          </Link>
           <Link className="task-item" to="/shenlun">
             <div className="icon">写</div>
             <div className="body">

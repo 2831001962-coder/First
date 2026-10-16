@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
-import { CATEGORIES, QUESTIONS, type CategoryId } from '../data/questions'
+import { CATEGORIES, QUESTIONS, TUXING_COUNT, type CategoryId } from '../data/questions'
 import { useProgress } from '../lib/progress'
 
 export function PracticePage() {
   const progress = useProgress()
+  const tuxingDone = QUESTIONS.filter(
+    (q) => q.subtype === 'tuxing' && progress.answered[q.id],
+  ).length
 
   return (
     <div className="page">
@@ -16,6 +19,15 @@ export function PracticePage() {
           <div className="body">
             <div className="title">每日一练</div>
             <div className="desc">智能抽题 10 道，保持手感</div>
+          </div>
+        </Link>
+        <Link className="task-item" to="/practice/quiz?subtype=tuxing">
+          <div className="icon">图</div>
+          <div className="body">
+            <div className="title">图形推理专练</div>
+            <div className="desc">
+              数量 · 位置 · 样式 · 属性 · 进度 {tuxingDone}/{TUXING_COUNT}
+            </div>
           </div>
         </Link>
         <Link className="task-item" to="/practice/mock">

@@ -1,3 +1,24 @@
+import {
+  arrowAt,
+  asymmetric,
+  centrosym,
+  circleWithLines,
+  closedRegions,
+  gridDot,
+  mirrorHorizontal,
+  mirrorVertical,
+  nestedShapes,
+  overlapLeft,
+  overlapResult,
+  overlapRight,
+  overlapWrongA,
+  overlapWrongB,
+  overlapWrongC,
+  threeElements,
+  triangleAt,
+  type FigurePanel,
+} from './figures'
+
 export type CategoryId =
   | 'yuyan'
   | 'shuliang'
@@ -5,11 +26,19 @@ export type CategoryId =
   | 'ziliao'
   | 'changshi'
 
+export type PanduanSubtype = 'tuxing' | 'dingyi' | 'leibi' | 'luoji'
+
 export type Question = {
   id: string
   category: CategoryId
+  /** 判断推理细分：图形 / 定义 / 类比 / 逻辑 */
+  subtype?: PanduanSubtype
   stem: string
+  /** 题干图形序列（含问号格） */
+  stemFigures?: FigurePanel[]
   options: string[]
+  /** 选项图形；有则优先展示图，文字作标签 */
+  optionFigures?: FigurePanel[]
   answer: number
   explanation: string
   difficulty: 1 | 2 | 3
@@ -127,23 +156,197 @@ export const QUESTIONS: Question[] = [
       '甲效率 1/12，乙 1/18。合作 4 天完成 4(1/12+1/18)=4(5/36)=5/9，剩余 4/9。乙需 (4/9)/(1/18)=8 天。',
     difficulty: 2,
   },
+
+  // ——— 图形推理 ———
   {
-    id: 'pd-1',
+    id: 'tx-1',
     category: 'panduan',
-    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：\n\n（题干示意：圆形依次被一条、两条、三条直线分割；问号处应继续该规律）',
-    options: [
-      'A. 被四条直线分割的圆',
-      'B. 被两条曲线分割的圆',
-      'C. 完整未分割的圆',
-      'D. 三角形被三条直线分割',
+    subtype: 'tuxing',
+    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：',
+    stemFigures: [
+      { label: '①', elements: circleWithLines(1) },
+      { label: '②', elements: circleWithLines(2) },
+      { label: '③', elements: circleWithLines(3) },
+      { isBlank: true, elements: [] },
+    ],
+    options: ['A', 'B', 'C', 'D'],
+    optionFigures: [
+      { elements: circleWithLines(4) },
+      { elements: circleWithLines(2) },
+      { elements: [{ t: 'circle', cx: 50, cy: 50, r: 36, fill: 'none', stroke: '#163d52', sw: 2.5 }] },
+      { elements: triangleAt(0) },
     ],
     answer: 0,
-    explanation: '直线数量递增：1、2、3、4，故选被四条直线分割的圆。',
+    explanation: '数量规律：圆内直线（直径）条数依次为 1、2、3，下一项应为 4。',
     difficulty: 1,
   },
   {
+    id: 'tx-2',
+    category: 'panduan',
+    subtype: 'tuxing',
+    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：',
+    stemFigures: [
+      { label: '①', elements: arrowAt(0) },
+      { label: '②', elements: arrowAt(90) },
+      { label: '③', elements: arrowAt(180) },
+      { isBlank: true, elements: [] },
+    ],
+    options: ['A', 'B', 'C', 'D'],
+    optionFigures: [
+      { elements: arrowAt(45) },
+      { elements: arrowAt(270) },
+      { elements: arrowAt(0) },
+      { elements: triangleAt(90) },
+    ],
+    answer: 1,
+    explanation: '位置规律：箭头每次顺时针旋转 90°，下一项指向左（270°）。',
+    difficulty: 1,
+  },
+  {
+    id: 'tx-3',
+    category: 'panduan',
+    subtype: 'tuxing',
+    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：\n\n（前两图叠加后得到第三图）',
+    stemFigures: [
+      { label: '①', elements: overlapLeft() },
+      { label: '②', elements: overlapRight() },
+      { isBlank: true, elements: [] },
+    ],
+    options: ['A', 'B', 'C', 'D'],
+    optionFigures: [
+      { elements: overlapWrongA() },
+      { elements: overlapWrongB() },
+      { elements: overlapResult() },
+      { elements: overlapWrongC() },
+    ],
+    answer: 2,
+    explanation: '样式规律（叠加）：图①与图②的线条直接叠加，得到图③，故选包含圆、矩形与三角形的一项。',
+    difficulty: 2,
+  },
+  {
+    id: 'tx-4',
+    category: 'panduan',
+    subtype: 'tuxing',
+    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：',
+    stemFigures: [
+      { label: '①', elements: gridDot(0) },
+      { label: '②', elements: gridDot(1) },
+      { label: '③', elements: gridDot(2) },
+      { label: '④', elements: gridDot(5) },
+      { isBlank: true, elements: [] },
+    ],
+    options: ['A', 'B', 'C', 'D'],
+    optionFigures: [
+      { elements: gridDot(4) },
+      { elements: gridDot(8) },
+      { elements: gridDot(3) },
+      { elements: gridDot(6) },
+    ],
+    answer: 1,
+    explanation:
+      '位置规律：黑点在九宫格中沿“Z”字路线移动——左上→中上→右上→右中→右下，故问号处在右下格。',
+    difficulty: 2,
+  },
+  {
+    id: 'tx-5',
+    category: 'panduan',
+    subtype: 'tuxing',
+    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：',
+    stemFigures: [
+      { label: '①', elements: closedRegions(1) },
+      { label: '②', elements: closedRegions(2) },
+      { label: '③', elements: closedRegions(3) },
+      { isBlank: true, elements: [] },
+    ],
+    options: ['A', 'B', 'C', 'D'],
+    optionFigures: [
+      { elements: closedRegions(4) },
+      { elements: closedRegions(2) },
+      { elements: nestedShapes(1) },
+      { elements: circleWithLines(3) },
+    ],
+    answer: 0,
+    explanation: '数量规律：封闭区域数依次为 1、2、3，下一项应为 4 个封闭区域（圆被十字分成四份）。',
+    difficulty: 2,
+  },
+  {
+    id: 'tx-6',
+    category: 'panduan',
+    subtype: 'tuxing',
+    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：',
+    stemFigures: [
+      { label: '①', elements: threeElements(['star', 'circle', 'tri']) },
+      { label: '②', elements: threeElements(['tri', 'star', 'circle']) },
+      { label: '③', elements: threeElements(['circle', 'tri', 'star']) },
+      { isBlank: true, elements: [] },
+    ],
+    options: ['A', 'B', 'C', 'D'],
+    optionFigures: [
+      { elements: threeElements(['star', 'circle', 'tri']) },
+      { elements: threeElements(['star', 'tri', 'circle']) },
+      { elements: threeElements(['circle', 'star', 'tri']) },
+      { elements: threeElements(['tri', 'circle', 'star']) },
+    ],
+    answer: 0,
+    explanation:
+      '遍历规律：★、○、△ 三种元素每次整体向右循环一位（最右到最左），下一组回到初始排列 ★○△。',
+    difficulty: 2,
+  },
+  {
+    id: 'tx-7',
+    category: 'panduan',
+    subtype: 'tuxing',
+    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：',
+    stemFigures: [
+      { label: '①', elements: nestedShapes(1) },
+      { label: '②', elements: nestedShapes(2) },
+      { label: '③', elements: nestedShapes(3) },
+      { isBlank: true, elements: [] },
+    ],
+    options: ['A', 'B', 'C', 'D'],
+    optionFigures: [
+      { elements: nestedShapes(2) },
+      { elements: nestedShapes(4) },
+      { elements: circleWithLines(1) },
+      { elements: triangleAt(0) },
+    ],
+    answer: 1,
+    explanation: '数量规律：图形中简单封闭图形个数依次为 1、2、3，下一项应为 4（圆、方、三角、小圆）。',
+    difficulty: 1,
+  },
+  {
+    id: 'tx-8',
+    category: 'panduan',
+    subtype: 'tuxing',
+    stem: '从所给四个选项中，选择最合适的一个填入问号处，使之呈现一定规律性：',
+    stemFigures: [
+      { label: '①', elements: mirrorVertical() },
+      { label: '②', elements: centrosym() },
+      { label: '③', elements: mirrorHorizontal() },
+      { isBlank: true, elements: [] },
+    ],
+    options: ['A', 'B', 'C', 'D'],
+    optionFigures: [
+      { elements: asymmetric() },
+      { elements: centrosym() },
+      { elements: mirrorVertical() },
+      {
+        elements: [
+          { t: 'poly', points: '50,20 80,50 50,80 20,50', fill: 'none', stroke: '#163d52', sw: 2.2 },
+          { t: 'circle', cx: 50, cy: 50, r: 8, fill: '#163d52', stroke: '#163d52', sw: 1 },
+        ],
+      },
+    ],
+    answer: 1,
+    explanation:
+      '属性规律：图①轴对称、图②中心对称、图③轴对称，对称类型按“轴—中心—轴—中心”交替，问号处应为中心对称图形。',
+    difficulty: 3,
+  },
+
+  {
     id: 'pd-2',
     category: 'panduan',
+    subtype: 'dingyi',
     stem: '“行政协议”是指行政机关为了实现行政管理或公共服务目标，与公民、法人或其他组织协商订立的具有行政法上权利义务内容的协议。\n\n根据上述定义，下列属于行政协议的是：',
     options: [
       'A. 某市与企业签订的产业扶持合作协议',
@@ -159,6 +362,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'pd-3',
     category: 'panduan',
+    subtype: 'leibi',
     stem: '钢笔 ∶ 书写　相当于',
     options: [
       'A. 渔网 ∶ 编织',
@@ -254,6 +458,7 @@ export const QUESTIONS: Question[] = [
   {
     id: 'pd-4',
     category: 'panduan',
+    subtype: 'luoji',
     stem: '所有参加笔试的考生都买了行测教材。有些买了行测教材的考生也买了申论教材。所以：',
     options: [
       'A. 所有参加笔试的考生都买了申论教材',
@@ -283,6 +488,12 @@ export function getQuestionsByCategory(category: CategoryId | 'all'): Question[]
   return QUESTIONS.filter((q) => q.category === category)
 }
 
+export function getQuestionsBySubtype(subtype: PanduanSubtype): Question[] {
+  return QUESTIONS.filter((q) => q.subtype === subtype)
+}
+
 export function getQuestionById(id: string): Question | undefined {
   return QUESTIONS.find((q) => q.id === id)
 }
+
+export const TUXING_COUNT = QUESTIONS.filter((q) => q.subtype === 'tuxing').length
