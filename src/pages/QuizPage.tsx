@@ -1,10 +1,13 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { FigurePanelView, FigureStrip } from '../components/FigurePanel'
 import {
   CATEGORIES,
   QUESTIONS,
   getQuestionsByCategory,
+  getQuestionsBySubtype,
   type CategoryId,
+  type PanduanSubtype,
   type Question,
 } from '../data/questions'
 import { addStudyMinutes, recordAnswer, setMockBestScore, useProgress } from '../lib/progress'
@@ -21,6 +24,7 @@ function shuffle<T>(arr: T[]): T[] {
 function buildQueue(params: URLSearchParams, wrongIds: string[]): Question[] {
   const mode = params.get('mode')
   const category = params.get('category') as CategoryId | 'all' | null
+  const subtype = params.get('subtype') as PanduanSubtype | null
   const wrongOnly = params.get('wrong') === '1'
 
   if (wrongOnly) {
@@ -33,6 +37,10 @@ function buildQueue(params: URLSearchParams, wrongIds: string[]): Question[] {
 
   if (mode === 'mock') {
     return shuffle(QUESTIONS).slice(0, Math.min(15, QUESTIONS.length))
+  }
+
+  if (subtype === 'tuxing' || subtype === 'dingyi' || subtype === 'leibi' || subtype === 'luoji') {
+    return getQuestionsBySubtype(subtype)
   }
 
   if (category && category !== 'all' && category in CATEGORIES) {
@@ -78,6 +86,7 @@ export function QuizPage() {
 
   const q = queue[index]
   const cat = CATEGORIES[q.category]
+  const tagLabel = q.subtype === 'tuxing' ? '图形' : cat.short
   const pct = Math.round(((index + (revealed ? 1 : 0)) / queue.length) * 100)
 
   function onSelect(i: number) {
@@ -144,7 +153,7 @@ export function QuizPage() {
     <div className="page">
       <div className="quiz-top">
         <div>
-          <div className="tag">{cat.short}</div>
+          <div className="tag">{tagLabel}</div>
           <span className="muted">
             {index + 1}/{queue.length}
             {isMock ? ' · 模考' : ''}
@@ -161,9 +170,14 @@ export function QuizPage() {
 
       <p className="stem">{q.stem}</p>
 
-      <div className="options">
+      {q.stemFigures && q.stemFigures.length > 0 && (
+        <FigureStrip panels={q.stemFigures} size={q.stemFigures.length > 4 ? 72 : 84} />
+      )}
+
+      <div className={`options${q.optionFigures ? ' options-fig' : ''}`}>
         {q.options.map((opt, i) => {
           let cls = 'option'
+          if (q.optionFigures) cls += ' option-fig'
           if (revealed) {
             if (i === q.answer) cls += ' correct'
             else if (i === selected) cls += ' wrong'
@@ -171,8 +185,15 @@ export function QuizPage() {
             cls += ' selected'
           }
           return (
-            <button key={opt} type="button" className={cls} onClick={() => onSelect(i)}>
-              {opt}
+            <button key={`${q.id}-${opt}-${i}`} type="button" className={cls} onClick={() => onSelect(i)}>
+              {q.optionFigures?.[i] ? (
+                <>
+                  <span className="option-letter">{opt}</span>
+                  <FigurePanelView panel={q.optionFigures[i]} size={72} />
+                </>
+              ) : (
+                opt
+              )}
             </button>
           )
         })}
